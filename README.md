@@ -9,7 +9,7 @@ Voici sa structuration :
 
 1. **API Gateway** : Pour centraliser les requêtes et gérer le routage vers les services respectifs.
 2. **Service Discovery** : Eureka pour enregistrer et découvrir les services.
-3. **Config Server** : Gestion centralisée des configurations.
+3. **Config Server** : Gestion centralisée des configurations. : va chercher les configs yaml dans le dépot parametré dans son fichier application.yml
 4. **Services** :
    - **Book Service** : Gestion des livres (ajout, suppression, mise à jour, recherche).
    - **User Service** : Gestion des utilisateurs (inscription, mise à jour, suppression).
