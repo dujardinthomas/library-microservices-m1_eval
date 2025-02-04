@@ -18,6 +18,8 @@ Voici sa structuration :
       Son fichier de config se trouve ici : https://github.com/dujardinthomas/config-server-library/blob/main/user-service.yml
    
    - **Borrowing Service** : Gestion des emprunts (prêter, retourner, vérifier disponibilité, suppression).
+      Son fichier de config se trouve ici : https://github.com/dujardinthomas/config-server-library/blob/main/borrowing-service.yml
+
   
 ---
 

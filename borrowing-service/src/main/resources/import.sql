@@ -1,0 +1,1 @@
+INSERT INTO borrowing (book_id, user_id, borrow_date, return_date) VALUES (1, 1, '2025-01-15', '2020-01-30');
