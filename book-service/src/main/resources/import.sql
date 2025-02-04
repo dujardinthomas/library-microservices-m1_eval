@@ -1,0 +1,1 @@
+INSERT INTO book (title, author, category, is_available) VALUES ('totoTitre', 'totoAuteur', 'totoCategorie', true);
