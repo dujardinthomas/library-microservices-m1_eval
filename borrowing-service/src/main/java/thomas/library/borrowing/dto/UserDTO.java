@@ -1,44 +1,20 @@
-package thomas.library.user.model;
+package thomas.library.borrowing.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+// import lombok.AllArgsConstructor;
 import lombok.Data;
+// import lombok.NoArgsConstructor;
 
-@Entity
 @Data
-@Table(name = "users")
-public class User {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+// @NoArgsConstructor
+// @AllArgsConstructor
+public class UserDTO {
     private Long id;
 
     private String name;
     private String email;
-
-    //@Enumerated(EnumType.STRING)
-    //private MembershipTypeEnum membershipType; // Regular, Premium
     private String membershipType;
     private boolean isLocked;
     private Integer nombreMaxEmprunt;
-
-
-    public User(Long id, String name, String email, String membershipType, boolean isLocked, Integer nombreMaxEmprunt) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.membershipType = membershipType;
-        this.isLocked = isLocked;
-        this.nombreMaxEmprunt = nombreMaxEmprunt;
-    }
-
-    public User() {
-    }
 
     public Long getId() {
         return id;

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import thomas.library.borrowing.dto.BorrowingDTO;
 import thomas.library.borrowing.model.Borrowing;
 import thomas.library.borrowing.service.BorrowingService;
 
@@ -25,17 +26,24 @@ public class BorrowingController {
         return borrowingService.getAllBorrowings();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Borrowing getBorrowingById(@PathVariable Long id) {
         return borrowingService.getBorrowingById(id);
-    }   
+    }  
+    
+    
+    @GetMapping("/dto/{id}")
+    public BorrowingDTO getBorrowingDTO(@PathVariable Long id) {
+        return borrowingService.getBorrowingDTO(id);
+    }
+
 
     @PostMapping
     public Borrowing createBorrowing(Borrowing borrowing) {
         return borrowingService.createBorrowing(borrowing);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteBorrowingById(@PathVariable Long id) {
         borrowingService.deleteBorrowingById(id);
     }

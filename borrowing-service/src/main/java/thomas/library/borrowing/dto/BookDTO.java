@@ -1,34 +1,19 @@
-package thomas.library.book.model;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+package thomas.library.borrowing.dto;
+
 import lombok.Data;
 
 @Data
-@Entity
-public class Book {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BookDTO {
     private Long id;
-
     private String title;
     private String author;
     private String category;
     private boolean isAvailable;
 
-    public Book() {
+    public BookDTO() {
     }
 
-    public Book(String title, String author, String category, boolean isAvailable) {
-        this.title = title;
-        this.author = author;
-        this.category = category;
-        this.isAvailable = isAvailable;
-    }
-
-    public Book(Long id, String title, String author, String category, boolean isAvailable) {
+    public BookDTO(Long id, String title, String author, String category, boolean isAvailable) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -38,6 +23,10 @@ public class Book {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -71,9 +60,4 @@ public class Book {
     public void setAvailable(boolean available) {
         isAvailable = available;
     }
-
-    
-
-    
-    
 }

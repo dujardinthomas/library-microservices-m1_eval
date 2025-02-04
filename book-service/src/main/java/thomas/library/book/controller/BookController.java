@@ -1,6 +1,5 @@
 package thomas.library.book.controller;
 
-import java.net.http.HttpResponse;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,6 +35,13 @@ public class BookController {
         System.out.println("BookController.getBookById() id: " + id);
         Book book = bookService.getBookById(id);
         return new ResponseEntity<>(book, book == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, Book book) {
+        System.out.println("BookController.updateBook() book: " + book);
+        Book updatedBook = bookService.updateBook(id, book);
+        return new ResponseEntity<>(updatedBook, updatedBook == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
 
     @PostMapping
