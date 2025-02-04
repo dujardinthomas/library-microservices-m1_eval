@@ -1,0 +1,1 @@
+INSERT INTO users (name, email, membership_type, is_locked, nombre_max_emprunt) VALUES ('toto', 'toto@gmail.com', 'Regular', false, 7);
