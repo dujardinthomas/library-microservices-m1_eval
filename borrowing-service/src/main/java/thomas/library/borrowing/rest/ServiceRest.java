@@ -59,5 +59,13 @@ public class ServiceRest {
             System.out.println("Error: " + e);
         }
     }
+
+    public void updateUser(UserDTO user) {
+        try {
+            restTemplate.put(USER_SERVICE_URL + user.getId(), user);
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+    }
     
 }

@@ -23,7 +23,29 @@ public class BorrowingService {
     private ServiceRest serviceRest;
 
     public Borrowing createBorrowing(Borrowing borrowing) {
-        return borrowingRepository.save(borrowing);
+        BookDTO book = serviceRest.getBookById(borrowing.getBookId());
+        UserDTO user = serviceRest.getUserById(borrowing.getUserId());
+
+        if (book != null && book.isAvailable() && user != null && !user.isLocked()) {
+            Borrowing borrowingNew = new Borrowing();
+            borrowing.setBookId(borrowing.getBookId());
+            borrowing.setUserId(borrowing.getUserId());
+            borrowing.setBorrowDate(LocalDate.now());
+            borrowing.setReturnDate(null);
+
+            book.setAvailable(false);
+            serviceRest.updateBook(book);
+
+            //si l'user a son max de reservation atteint, on le lock
+            if (user.getNombreMaxEmprunt() >= borrowingRepository.countActiveReservationsByUserId(user.getId())) {
+                user.setLocked(true);
+                serviceRest.updateUser(user);
+            }
+
+            return borrowingRepository.save(borrowingNew);
+        } else {
+            throw new RuntimeException("Book is not available or user is locked.");
+        }
     }
 
     public Borrowing getBorrowingById(Long id) {
@@ -52,25 +74,7 @@ public class BorrowingService {
         return borrowingDTO;
     }
 
-    public Borrowing addBorrowing(Long bookId, Long userId) {
-        BookDTO book = serviceRest.getBookById(bookId);
-        UserDTO user = serviceRest.getUserById(userId);
 
-        if (book != null && book.isAvailable() && user != null && !user.isLocked()) {
-            Borrowing borrowing = new Borrowing();
-            borrowing.setBookId(bookId);
-            borrowing.setUserId(userId);
-            borrowing.setBorrowDate(LocalDate.now());
-            borrowing.setReturnDate(null);
-
-            book.setAvailable(false);
-            serviceRest.updateBook(book);
-
-            return borrowingRepository.save(borrowing);
-        } else {
-            throw new RuntimeException("Book is not available or user is locked.");
-        }
-    }
 
     public List<Borrowing> getAllBorrowings() {
         return borrowingRepository.findAll();
